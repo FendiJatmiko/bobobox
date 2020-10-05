@@ -1,0 +1,4 @@
+variables.tf
+tags
+terraform.tfstate
+terraform.tfstate.backup
