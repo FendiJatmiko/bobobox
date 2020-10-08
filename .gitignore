@@ -3,3 +3,14 @@ tags
 terraform.tfstate
 terraform.tfstate.backup
 .terraform
+
+# Local Terraform plugins
+**/.terraform/plugins/**
+
+# Terraform secrets files
+*.tfvars
+*.tfvars.*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
