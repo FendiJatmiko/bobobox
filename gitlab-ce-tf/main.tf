@@ -27,7 +27,7 @@ resource "aws_route_table_association" "public_route_assoc" {
 }
 
 resource "aws_instance" "ec2_server" {
-  ami                         = "ami-093da183b859d5a4b"
+  ami                         = "ami-0c8e97a27be37adfd"
   instance_type               = "t2.micro"
   subnet_id                   = "${aws_subnet.public.id}"
   associate_public_ip_address = "true"
@@ -36,16 +36,20 @@ resource "aws_instance" "ec2_server" {
   "${aws_security_group.allow_ssh.id}"]
 
   user_data = <<EOF
-                  #!/bin/bash
-                  sudo apt update -y 
-                  sudo apt install apache2 -y 
-                  sudo systemctl enable apache2
-                  sudo systemctl start apache2
-                  sudo chown -R www-data:www-data /var/www/html/
-                  sudo echo "<h1> This is MARK 5 ...the first working apache web server with terraform</h1>" > /var/www/html/index.html
-                EOF
+            #!/bin/bash
+            sudo apt update -y 
+            sudo apt install ca-certificates curl openssh-server postfix -y
+            cd /tmp
+            curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+            sudo bash /tmp/script.deb.sh
+            sudo apt install gitlab-ce
+            sudo ufw allow http
+            sudo ufw allow OpenSSH
+            sudo ufw allow https
+        EOF
+
   tags = {
-    Name = "nyobi-mark-5"
+    Name = "Gitlab-Runner"
   }
 }
 
@@ -86,7 +90,7 @@ resource "aws_security_group" "allow_ssh" {
   }
 
   tags = {
-    Name = "Nyobi-mark-5"
+    Name = "Ec2-Gitlab-Runner"
   }
 }
 
