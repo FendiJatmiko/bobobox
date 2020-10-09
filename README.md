@@ -4,7 +4,7 @@ answer to the bobobox assignment
   1. Vpc and EC2 instances 
 
 
-# How To run this program
+ *******How To run this program*
   - first thing first configure the aws secret credentials 
     $ aws configure
     AWS Access Key ID [None]: YOUR_AWS_ACCESS_KEY_ID
@@ -24,4 +24,8 @@ answer to the bobobox assignment
   - deploy kubernetes Metrics Server
 
   - after metrics server is done, continue to deploy kubernetes dashboard
-  authenticate the dashboard,
+  authenticate the dashboard
+
+    3. Deploy statefulset database in kubernetes 
+
+    4. install and configure gitlab ci runner
