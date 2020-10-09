@@ -42,14 +42,14 @@ resource "aws_instance" "ec2_server" {
             cd /tmp
             curl -LO https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
             sudo bash /tmp/script.deb.sh
-            sudo apt install gitlab-ce
+            sudo apt install gitlab-ce -y
             sudo ufw allow http
             sudo ufw allow OpenSSH
             sudo ufw allow https
         EOF
 
   tags = {
-    Name = "Gitlab-Runner"
+    Name = "Gitlab-CE"
   }
 }
 
@@ -90,7 +90,7 @@ resource "aws_security_group" "allow_ssh" {
   }
 
   tags = {
-    Name = "Ec2-Gitlab-Runner"
+    Name = "Ec2-Gitlab-CE"
   }
 }
 
