@@ -2,3 +2,4 @@ new trigger
  check for push events 
 update on the webhook
 nyobi another trigger 
+trigger freestyle project 
